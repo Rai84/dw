@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tema</title>
+
+    <!-- Tailwind CSS compilado -->
+    <link rel="stylesheet" th:href="@{/css/output.css}" />
+    <link rel="stylesheet" th:href="@{/css/reset.css}" />
+
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <!-- Script do tema -->
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      const temaSalvo = localStorage.getItem("tema") || "dark";
+      if (temaSalvo === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+      /*]]>*/
+    </script>
+  </head>
+
+  <body class="flex items-center justify-center h-screen text-black transition-colors duration-500 bg-white dark:bg-black dark:text-white">
+
+    <h1 class="text-3xl font-bold">Página carregada com sucesso!</h1>
+
+    <!-- Container onde os modais serão injetados -->
+    <div id="modais" class="hidden"></div>
+
+    <nav class="bg-stone-900 h-[96%] w-10 absolute top-[2%] left-[10px] rounded-full grid grid-cols-1 grid-rows-[1fr_80px_1fr] gap-y-2 justify-items-center items-center text-center">
+      <div class="row-start-1 row-end-2 w-8 h-48 bg-stone-700 rounded-full absolute top-[5px] flex justify-center items-center">
+        <ul class="flex flex-col gap-[5px]">
+          <li><a class="text-white text-[22px] hover:text-orange-600 transition-colors" href="#"><i class="bi bi-house"></i></a></li>
+          <li><a class="text-white text-[22px] hover:text-orange-600 transition-colors" href="#"><i class="bi bi-person"></i></a></li>
+          <li><a class="text-white text-[22px] hover:text-orange-600 transition-colors" href="#"><i class="bi bi-folder2-open"></i></a></li>
+          <li><a class="text-white text-[22px] hover:text-orange-600 transition-colors" href="#"><i class="bi bi-controller"></i></a></li>
+          <li><a class="text-white text-[22px] hover:text-orange-600 transition-colors" href="#"><i class="bi bi-globe2"></i></a></li>
+        </ul>
+      </div>
+
+      <div class="flex items-center justify-center w-6 h-16 row-start-2 row-end-3 transition-colors duration-200 rounded-full cursor-pointer bg-stone-700 hover:bg-orange-600">
+        <button onclick="toggleModal('modal1')">
+          <i class="bi bi-chevron-compact-right text-white text-[22px]"></i>
+        </button>
+      </div>
+
+      <div class="row-start-3 row-end-4 w-8 h-8 rounded-full absolute bottom-[5px] flex justify-center items-center">
+        <button id="btnModal2" onclick="toggleModal('modal2')" class="group">
+          <i id="iconModal2" class="bi bi-gear text-white text-[22px] group-hover:text-orange-600 transition-colors duration-200"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Scripts finais -->
+    <script th:src="@{/js/theme.js}"></script>
+    <script th:src="@{/js/modal.js}"></script>
+  </body>
+</html>

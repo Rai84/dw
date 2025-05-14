@@ -18,19 +18,9 @@ public class PainelService {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
-    public void carregarDadosDoPainel(Authentication authentication, Model model) {
-        logger.info("PainelService: carregando dados para o painel...");
-
-        String email = authentication.getName();
-        UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
-
-        if (userDetails instanceof CustomUserDetails customUser) {
-            logger.info("Usuário autenticado: ID = {}, Email = {}", customUser.getId(), customUser.getEmail());
-
-            model.addAttribute("userId", customUser.getId());
-            model.addAttribute("userEmail", customUser.getEmail());
-            model.addAttribute("userName", customUser.getNome());
-            model.addAttribute("userType", customUser.getTipo());
-        }
+    public void carregarDadosDoPainel(Model model) {
+        // Exemplo de dados mockados
+        model.addAttribute("mensagem", "Bem-vindo ao painel!");
     }
+    
 }
